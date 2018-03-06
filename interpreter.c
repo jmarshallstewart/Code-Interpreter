@@ -54,7 +54,6 @@ int execute()
     {
     case 0: // END (0)
         return 0;
-        break;
     case 1: // WRITE (2) //  arg 1 is value to write, arg 2 is the memory address to write to.
         value = read();
         address = read();
@@ -107,8 +106,8 @@ int execute()
 
         instructionPointer = (memory[address] == 0) ? falseBranch : trueBranch;
         break;
-    case 10: // EQUALS (3) arg 1 is the first value to compare, arg 2 is the second value to compare, arg 3 the memory address to store
-             // the following result: 1 if the values or equal, 0 if the values are not equal.
+    case 10: // EQUALS (3) arg 1 is the first value to compare, arg 2 is the second value to compare, 
+             // arg 3 the memory address to store the following result: 1 if the values or equal, 0 if not equal.
         lhs = memory[read()];
         rhs = memory[read()];
         address = read();
