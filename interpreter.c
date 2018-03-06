@@ -5,8 +5,8 @@
 // global variables
 int instructionPointer;
 int codeLength;
-unsigned char code[1024];
-unsigned char memory[128];
+unsigned char code[256];
+unsigned char memory[256];
 
 
 // Opens a file and reads it into code memory.
@@ -36,7 +36,7 @@ unsigned char read()
 
 // execute the next instruction of the loaded program.
 // an instruction begins with an instruction id followed by
-// a variable number of parameters (usually 2 or 3).
+// a specific number of parameters per instruction (usually 2 or 3).
 int execute()
 {
     // Get the next symbol (i.e., instruction) to execute.
