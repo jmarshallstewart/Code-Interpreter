@@ -3,7 +3,7 @@
 #include <stdio.h>
 
 // global variables
-int readIndex;
+int instructionPointer;
 int codeLength;
 unsigned char code[1024];
 unsigned char memory[128];
@@ -12,22 +12,26 @@ unsigned char memory[128];
 // Opens a file and reads it into code memory.
 void loadCode(char* path)
 {
-    FILE* file = fopen(path, "rb");  // open the file for reading in binary mode.
+    // open the file for reading in binary mode.
+    FILE* file = fopen(path, "rb");  
 
-                                     // read the length of the file by jumping to the end, reading the distance, 
-                                     // and then jumping back.
+    // read the length of the file by jumping to the end, reading the distance, 
+    // and then jumping back.                                 
     fseek(file, 0, SEEK_END);
     codeLength = ftell(file);
     rewind(file);
 
-    fread(code, codeLength, 1, file); // read the contents of the file.
-    fclose(file);                     // release the file back to the OS, making it available for other programs.
+    // read the contents of the file.
+    fread(code, codeLength, 1, file);
+
+    // release the file back to the OS, making it available for other programs.
+    fclose(file);                     
 }
 
 // read the next symbol from the loaded program.
 unsigned char read()
 {
-    return code[readIndex++];
+    return code[instructionPointer++];
 }
 
 // execute the next instruction of the loaded program.
@@ -95,13 +99,13 @@ int execute()
             memory[read()] = (unsigned char)c;
         }
         break;
-    case 9: // Branch (3) arg 1 is the memory address of the truth-value, arg 2 is the instruction address to jump to if arg 1 is true,
+    case 9: // BRANCH (3) arg 1 is the memory address of the truth-value, arg 2 is the instruction address to jump to if arg 1 is true,
             // arg 3 is the instruction address to jump to if arg 1 is false.
         address = read();
         unsigned char trueBranch = read();
         unsigned char falseBranch = read();
 
-        readIndex = (memory[address] == 0) ? falseBranch : trueBranch;
+        instructionPointer = (memory[address] == 0) ? falseBranch : trueBranch;
         break;
     case 10: // EQUALS (3) arg 1 is the first value to compare, arg 2 is the second value to compare, arg 3 the memory address to store
              // the following result: 1 if the values or equal, 0 if the values are not equal.
@@ -115,7 +119,7 @@ int execute()
         printf("UNKNOWN INSTRUCTION: %c\n", symbol);
     }
 
-    return readIndex < codeLength;
+    return instructionPointer < codeLength;
 }
 
 int main(int argc, char* argv[])
@@ -124,7 +128,7 @@ int main(int argc, char* argv[])
     for (int i = 1; i < argc; ++i)
     {
         loadCode(argv[i]);      // read the program file into memory.
-        readIndex = 0;          // reset our read position each time we start a new file.
+        instructionPointer = 0; // reset our read position each time we start a new file.
         while (execute()) {}	// execute instructions while there are instructions left to execute.
         printf("\n");           // add a line break in case another program is going to run after this one.
     }
