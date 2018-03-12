@@ -1,0 +1,27 @@
+Here are some ideas for simple programs to write that will allow you to practice using the interpreter.
+
+Write a program that...
+
+1. WARM UP: Write a program that calculates and displays the value of 77 + 92.
+
+2. TWICE: prompts the user to enter a number, then displays the value of the entered number multiplied by 2.
+
+3. HI: prints the word "hi" to the screen.
+
+4. SMILE: prints out three smiley faces in ASCII text (hint: google "code page 437" and look at the symbol chart )
+
+5. ADDER: prompts the user to enter two numbers, then prints the sum of the numbers entered.
+
+6. SQUARE: write a program that calculates the area of a rectangle. The program prompts the user to enter a width and a height, and prints a number representing the area of the rectangle.
+
+7. MIN: write a program that prompts the user to enter two numbers. The program then prints the smaller of the two numbers entered.
+
+8. LOOP: write a program that calculates and prints the sum of the integers from 1 to 1000.
+
+9. POWERS: write a program that calculates and prints the first 10 powers of 2.
+
+10. EQUALS: write a program that prompts the user to enter two numbers. If the numbers are equal, it prints "equal." If they are not equal, the program prints "not equal". (Hint: Do you need to have separate strings for "equal" and "not equal" in memory?)
+
+11. DIVIDER: prompts the user to enter two numbers, then prints the result of dividing the first number by the second (Hint: you will need to add a new instruction to the interpreter program and recompile.)
+
+12. CLAMP: write a program that prompts the user to enter three numbers: a value, a min value, a max value. If the value is less than the min value, the program prints the min value. If the value is greater than the max value, the program prints the max value. Otherwise, it just prints the value.
