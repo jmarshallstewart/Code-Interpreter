@@ -16,7 +16,7 @@ Write a program that...
 
 7. MIN: write a program that prompts the user to enter two numbers. The program then prints the smaller of the two numbers entered.
 
-8. LOOP: write a program that calculates and prints the sum of the integers from 1 to 1000.
+8. LOOP: write a program that calculates and prints the sum of the integers from 1 to 20.
 
 9. POWERS: write a program that calculates and prints the first 10 powers of 2.
 

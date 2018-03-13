@@ -5,8 +5,8 @@
 // global variables
 int instructionPointer;
 int codeLength;
-unsigned char code[256];
-unsigned char memory[256];
+unsigned char code[2048];
+unsigned char memory[2048];
 
 
 // Opens a file and reads it into code memory.
@@ -20,9 +20,16 @@ void loadCode(char* path)
     fseek(file, 0, SEEK_END);
     codeLength = ftell(file);
     rewind(file);
+    
+    if (codeLength == 0)
+    {
+        printf("Error reading script %s\n", path);
+    }
 
     // read the contents of the file.
     fread(code, codeLength, 1, file);
+    
+    
 
     // release the file back to the OS, making it available for other programs.
     fclose(file);                     
@@ -108,6 +115,24 @@ int execute()
         break;
     case 10: // EQUALS (3) arg 1 is the first value to compare, arg 2 is the second value to compare, 
              // arg 3 the memory address to store the following result: 1 if the values or equal, 0 if not equal.
+        lhs = memory[read()];
+        rhs = memory[read()];
+        address = read();
+
+        memory[address] = (lhs == rhs) ? 1 : 0;
+        break;
+     case 11:   // LESS_THAN (3) arg 1 is the first value to compare, arg 2 is the second value to compare, 
+                // arg 3 the memory address to store the following result: 1 if first value is less than
+                // the second, otherwise 0. 
+        lhs = memory[read()];
+        rhs = memory[read()];
+        address = read();
+
+        memory[address] = (lhs < rhs) ? 1 : 0;
+        break;
+     case 12:   // GREATER_THAN (3) arg 1 is the first value to compare, arg 2 is the second value to compare, 
+                // arg 3 the memory address to store the following result: 1 if first value is greater than
+                // the second, otherwise 0. 
         lhs = memory[read()];
         rhs = memory[read()];
         address = read();
