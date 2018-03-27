@@ -8,7 +8,6 @@ int codeLength;
 unsigned char code[2048];
 unsigned char memory[2048];
 
-
 // Opens a file and reads it into code memory.
 void loadCode(char* path)
 {
@@ -28,8 +27,6 @@ void loadCode(char* path)
 
     // read the contents of the file.
     fread(code, codeLength, 1, file);
-    
-    
 
     // release the file back to the OS, making it available for other programs.
     fclose(file);                     
