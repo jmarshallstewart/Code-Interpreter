@@ -134,7 +134,7 @@ int execute()
         rhs = memory[read()];
         address = read();
 
-        memory[address] = (lhs == rhs) ? 1 : 0;
+        memory[address] = (lhs > rhs) ? 1 : 0;
         break;
     default:
         printf("UNKNOWN INSTRUCTION: %c\n", symbol);
