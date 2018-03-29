@@ -24,10 +24,12 @@ void loadCode(char* path)
     {
         printf("Error reading script %s\n", path);
     }
-
-    // read the contents of the file.
-    fread(code, codeLength, 1, file);
-
+    else
+    {
+        // read the contents of the file.
+        fread(code, codeLength, 1, file);
+    }
+    
     // release the file back to the OS, making it available for other programs.
     fclose(file);                     
 }
